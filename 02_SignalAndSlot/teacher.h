@@ -11,6 +11,7 @@ public:
 
 signals:
     void hungry();
+    void hungry(QString foodName);
 
 };
 

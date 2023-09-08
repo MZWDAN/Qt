@@ -11,8 +11,9 @@ public:
 
 signals:
 
-private slots:
+public slots:
     void treat();
+    void treat(QString foodName);
 
 };
 

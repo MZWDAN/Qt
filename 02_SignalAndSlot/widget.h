@@ -5,15 +5,17 @@
 #include "teacher.h"
 #include "student.h"
 
-class Widget : public QWidget
+class CWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    Widget(QWidget *parent = nullptr);
-    ~Widget();
-private:
+    CWidget(QWidget *parent = nullptr);
+    ~CWidget();
+
     Teacher *zt;
     Student *st;
+
+    void classIsOver();
 };
 #endif // WIDGET_H

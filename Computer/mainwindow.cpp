@@ -5,7 +5,7 @@
 #include <QString>
 #include <QGridLayout>
 
-MainWindow::MainWindow(QWidget *parent)
+CMainWindow::CMainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     // 创建显示区域
@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //创建水平布局，用来放置文本显示区域
     QHBoxLayout *upLayout = new QHBoxLayout;
-    upLayout->addWidget(numberShowArea);
+    upLayout->addWidget(number_show_area);
 
     //创建计算器上按钮组的显示文本
     QString buttonTexts[23] = {"7", "8", "9", "+", QString::fromLocal8Bit("清除"), QString::fromLocal8Bit("退格"),
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     for(int i = 0; i < 22; i++)
     {
         m_qpButton[i] = new QPushButton(buttonTexts[i], this);
-        gridLayout->addWidget(button[i], row, col);
+        gridLayout->addWidget(m_qpButton[i], row, col);
         col++;
 
         if(6 == col)
@@ -41,8 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
 
-    button[22] = new QPushButton("=", this);
-    gridLayout->addWidget(button[22], row, col, 1, 2);
+    m_qpButton[22] = new QPushButton("=", this);
+    gridLayout->addWidget(m_qpButton[22], row, col, 1, 2);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(upLayout);
@@ -58,17 +58,17 @@ MainWindow::MainWindow(QWidget *parent)
 
 }
 
-MainWindow::~MainWindow()
+CMainWindow::~CMainWindow()
 {
 
 }
 
-void MainWindow::operAdd()
+void CMainWindow::sltOperAdd()
 {
 
 }
 
-void MainWindow::digitClicked()
+void CMainWindow::sltDigitClicked()
 {
     QPushButton *button = qobject_cast<QPushButton*>(sender());
     if (button)
