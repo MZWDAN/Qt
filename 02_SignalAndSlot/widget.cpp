@@ -23,7 +23,7 @@ CWidget::CWidget(QWidget *parent)
 
     //连接带参数的信号和槽
     void(Teacher::*teacherSignal)(QString) = &Teacher::hungry;
-    void(Student::*studentSlot)(QString) = &Student::treat;
+    void(Student::*studentSlot)(QString) = &Student::sltTreat;
     connect(zt, teacherSignal, st, studentSlot);
 
 //    classIsOver();
@@ -87,7 +87,7 @@ CWidget::CWidget(QWidget *parent)
     connect(m_qpBtn_4, &QPushButton::clicked, this, [=](){
 //        this->close();
         emit zt->hungry("gongbaojiding");
-        st->treat();
+        st->sltTreat();
         m_qpBtn_4->setText("aaaa");
     });
 
@@ -98,7 +98,7 @@ CWidget::~CWidget()
 {
 }
 
-void CWidget::classIsOver()
+void CWidget::ClassIsOver()
 {
     //下课函数，调用后，触发teacher饿了的信号
 //    emit zt->hungry();

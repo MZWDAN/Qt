@@ -12,8 +12,8 @@ public:
 signals:
 
 public slots:
-    void treat();
-    void treat(QString foodName);
+    void sltTreat();
+    void sltTreat(QString foodName);
 
 };
 

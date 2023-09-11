@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Student_t {
     QByteArrayData data[4];
-    char stringdata0[24];
+    char stringdata0[27];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,12 +32,12 @@ struct qt_meta_stringdata_Student_t {
 static const qt_meta_stringdata_Student_t qt_meta_stringdata_Student = {
     {
 QT_MOC_LITERAL(0, 0, 7), // "Student"
-QT_MOC_LITERAL(1, 8, 5), // "treat"
-QT_MOC_LITERAL(2, 14, 0), // ""
-QT_MOC_LITERAL(3, 15, 8) // "foodName"
+QT_MOC_LITERAL(1, 8, 8), // "sltTreat"
+QT_MOC_LITERAL(2, 17, 0), // ""
+QT_MOC_LITERAL(3, 18, 8) // "foodName"
 
     },
-    "Student\0treat\0\0foodName"
+    "Student\0sltTreat\0\0foodName"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,8 +71,8 @@ void Student::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         auto *_t = static_cast<Student *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->treat(); break;
-        case 1: _t->treat((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 0: _t->sltTreat(); break;
+        case 1: _t->sltTreat((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }

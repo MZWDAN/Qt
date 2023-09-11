@@ -16,6 +16,6 @@ public:
     Teacher *zt;
     Student *st;
 
-    void classIsOver();
+    void ClassIsOver();
 };
 #endif // WIDGET_H
