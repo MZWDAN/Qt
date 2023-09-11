@@ -3,6 +3,8 @@
 #include <student.h>
 #include <QPushButton>
 #include <QDebug>
+#include <iostream>
+using namespace std;
 
 CWidget::CWidget(QWidget *parent)
     : QWidget(parent)
@@ -88,6 +90,8 @@ CWidget::CWidget(QWidget *parent)
         st->treat();
         m_qpBtn_4->setText("aaaa");
     });
+
+    cout<<"20230911"<<endl;
 }
 
 CWidget::~CWidget()
