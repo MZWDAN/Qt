@@ -74,12 +74,12 @@ MainWindow::MainWindow(QWidget *parent)
 
         //其他标准对话框
         //颜色对话框
-//        QColor color = QColorDialog::getColor(QColor(255, 0, 0));
-//        qDebug() << "r=" << color.red() << " g=" << color.green() << " b=" << color.blue();
+        QColor color = QColorDialog::getColor(QColor(255, 0, 0));
+        qDebug() << "r=" << color.red() << " g=" << color.green() << " b=" << color.blue();
 
         //文件对话框 参数1：父亲，参数2：标题，参数3：默认打开路径，参数4：过滤文件格式，返回值是选取的路径
-//        QString str = QFileDialog::getOpenFileName(this, "打开文件", "C:\\Users\\OUXUE\\Desktop", "(*.txt)");
-//        qDebug() << str;
+        QString str = QFileDialog::getOpenFileName(this, "打开文件", "C:\\Users\\OUXUE\\Desktop", "(*.txt)");
+        qDebug() << str;
 
         //字体对话框
         bool flag;
