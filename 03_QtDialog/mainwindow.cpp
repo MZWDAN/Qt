@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QColorDialog>
 #include <QColor>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -57,22 +58,26 @@ MainWindow::MainWindow(QWidget *parent)
         //参数1：父亲，参数2：标题，参数3：提示内容，参数4：案件类型，参数5：默认关联回车的按键
 //        QMessageBox::question(this, "question", "提问", QMessageBox::Save | QMessageBox::Cancel, QMessageBox::Cancel);
 
-        if(QMessageBox::Save == QMessageBox::question(this, "question", "提问", QMessageBox::Save | QMessageBox::Cancel, QMessageBox::Cancel))
-        {
-            qDebug() << "选择的是save";
-        }
-        else
-        {
-            qDebug() << "选择的是cancel";
-        }
+//        if(QMessageBox::Save == QMessageBox::question(this, "question", "提问", QMessageBox::Save | QMessageBox::Cancel, QMessageBox::Cancel))
+//        {
+//            qDebug() << "选择的是save";
+//        }
+//        else
+//        {
+//            qDebug() << "选择的是cancel";
+//        }
 
         //警告对话框
-        QMessageBox::warning(this, "warning", "警告");
+//        QMessageBox::warning(this, "warning", "警告");
 
         //其他标准对话框
         //颜色对话框
-        QColor color = QColorDialog::getColor(QColor(255, 0, 0));
-        qDebug() << "r=" << color.red() << " g=" << color.green() << " b=" << color.blue();
+//        QColor color = QColorDialog::getColor(QColor(255, 0, 0));
+//        qDebug() << "r=" << color.red() << " g=" << color.green() << " b=" << color.blue();
+
+        //文件对话框 参数1：父亲，参数2：标题，参数3：默认打开路径，参数4：过滤文件格式，返回值是选取的路径
+        QString str = QFileDialog::getOpenFileName(this, "打开文件", "C:\\Users\\OUXUE\\Desktop", "(*.txt)");
+        qDebug() << str;
     });
 
 }
