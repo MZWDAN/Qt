@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 
+QT_BEGIN_NAMESPACE
+namespace Ui { class CMainWindow; }
+QT_END_NAMESPACE
+
 class CMainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -10,5 +14,8 @@ class CMainWindow : public QMainWindow
 public:
     CMainWindow(QWidget *parent = nullptr);
     ~CMainWindow();
+
+private:
+    Ui::CMainWindow *ui;
 };
 #endif // CMAINWINDOW_H
