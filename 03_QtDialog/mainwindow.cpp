@@ -4,6 +4,9 @@
 #include <QToolBar>
 #include <QMenuBar>
 #include <QDebug>
+#include <QMessageBox>
+#include <QColorDialog>
+#include <QColor>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,10 +41,38 @@ MainWindow::MainWindow(QWidget *parent)
 //        qDebug() << "模态对话框弹出了";
 
         //非模态对话框弹出
-        QDialog *m_qpDig = new QDialog(this);
-        m_qpDig->resize(200, 100);
-        m_qpDig->show();
-        m_qpDig->setAttribute(Qt::WA_DeleteOnClose); //55号属性
+//        QDialog *m_qpDig = new QDialog(this);
+//        m_qpDig->resize(200, 100);
+//        m_qpDig->show();
+//        m_qpDig->setAttribute(Qt::WA_DeleteOnClose); //55号属性
+
+        //消息对话框
+        //错误对话框
+//        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("错误"));
+
+        //信息对话框
+//        QMessageBox::information(this, "information", "信息");
+
+        //问题对话框
+        //参数1：父亲，参数2：标题，参数3：提示内容，参数4：案件类型，参数5：默认关联回车的按键
+//        QMessageBox::question(this, "question", "提问", QMessageBox::Save | QMessageBox::Cancel, QMessageBox::Cancel);
+
+        if(QMessageBox::Save == QMessageBox::question(this, "question", "提问", QMessageBox::Save | QMessageBox::Cancel, QMessageBox::Cancel))
+        {
+            qDebug() << "选择的是save";
+        }
+        else
+        {
+            qDebug() << "选择的是cancel";
+        }
+
+        //警告对话框
+        QMessageBox::warning(this, "warning", "警告");
+
+        //其他标准对话框
+        //颜色对话框
+        QColorDialog::getColor(QColor(255, 0, 0));
+
     });
 
 }
