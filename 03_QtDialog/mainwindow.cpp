@@ -71,8 +71,8 @@ MainWindow::MainWindow(QWidget *parent)
 
         //其他标准对话框
         //颜色对话框
-        QColorDialog::getColor(QColor(255, 0, 0));
-
+        QColor color = QColorDialog::getColor(QColor(255, 0, 0));
+        qDebug() << "r=" << color.red() << " g=" << color.green() << " b=" << color.blue();
     });
 
 }
