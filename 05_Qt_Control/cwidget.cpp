@@ -2,6 +2,8 @@
 #include "ui_cwidget.h"
 #include <QDebug>
 #include <QCheckBox>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 CWidget::CWidget(QWidget *parent)
     : QWidget(parent)
@@ -21,6 +23,10 @@ CWidget::CWidget(QWidget *parent)
     connect(ui->checkBox, &QCheckBox::stateChanged, [](int state){
                 qDebug() << state;
             });
+    //利用ListWidget写诗
+    QListWidgetItem *item = new QListWidgetItem(QString::fromLocal8Bit("锄禾日当午"));
+    item->setTextAlignment(Qt::AlignHCenter);
+    ui->listWidget->addItem(item);
 }
 
 CWidget::~CWidget()

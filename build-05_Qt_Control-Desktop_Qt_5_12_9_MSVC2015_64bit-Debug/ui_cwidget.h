@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QToolButton>
@@ -41,6 +42,7 @@ public:
     QCheckBox *checkBox_2;
     QCheckBox *checkBox_3;
     QCheckBox *checkBox_4;
+    QListWidget *listWidget;
 
     void setupUi(QWidget *CWidget)
     {
@@ -49,10 +51,10 @@ public:
         CWidget->resize(553, 522);
         pushButton = new QPushButton(CWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(72, 110, 131, 28));
+        pushButton->setGeometry(QRect(20, 30, 131, 28));
         toolButton = new QToolButton(CWidget);
         toolButton->setObjectName(QString::fromUtf8("toolButton"));
-        toolButton->setGeometry(QRect(10, 180, 111, 51));
+        toolButton->setGeometry(QRect(20, 70, 111, 51));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/Snipaste_2023-10-09_18-48-50.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         toolButton->setIcon(icon);
@@ -60,7 +62,7 @@ public:
         toolButton->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         groupBox = new QGroupBox(CWidget);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(90, 380, 91, 111));
+        groupBox->setGeometry(QRect(20, 150, 91, 111));
         verticalLayout = new QVBoxLayout(groupBox);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         rBtnMan = new QRadioButton(groupBox);
@@ -75,7 +77,7 @@ public:
 
         groupBox_2 = new QGroupBox(CWidget);
         groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
-        groupBox_2->setGeometry(QRect(280, 390, 111, 101));
+        groupBox_2->setGeometry(QRect(20, 280, 111, 101));
         verticalLayout_2 = new QVBoxLayout(groupBox_2);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         radioButton_3 = new QRadioButton(groupBox_2);
@@ -90,7 +92,7 @@ public:
 
         groupBox_3 = new QGroupBox(CWidget);
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
-        groupBox_3->setGeometry(QRect(320, 100, 191, 241));
+        groupBox_3->setGeometry(QRect(170, 30, 191, 241));
         verticalLayout_3 = new QVBoxLayout(groupBox_3);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         checkBox = new QCheckBox(groupBox_3);
@@ -114,6 +116,10 @@ public:
 
         verticalLayout_3->addWidget(checkBox_4);
 
+        listWidget = new QListWidget(CWidget);
+        new QListWidgetItem(listWidget);
+        listWidget->setObjectName(QString::fromUtf8("listWidget"));
+        listWidget->setGeometry(QRect(210, 300, 256, 192));
 
         retranslateUi(CWidget);
 
@@ -136,6 +142,13 @@ public:
         checkBox_2->setText(QApplication::translate("CWidget", "\345\217\243\346\204\237\345\245\275", nullptr));
         checkBox_3->setText(QApplication::translate("CWidget", "\346\234\215\345\212\241\345\210\260\344\275\215", nullptr));
         checkBox_4->setText(QApplication::translate("CWidget", "\350\200\201\346\235\277\345\250\230\345\245\275", nullptr));
+
+        const bool __sortingEnabled = listWidget->isSortingEnabled();
+        listWidget->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem = listWidget->item(0);
+        ___qlistwidgetitem->setText(QApplication::translate("CWidget", "\346\226\260\345\273\272\351\241\271\347\233\256", nullptr));
+        listWidget->setSortingEnabled(__sortingEnabled);
+
     } // retranslateUi
 
 };
