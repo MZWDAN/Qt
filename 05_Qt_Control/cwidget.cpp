@@ -28,12 +28,14 @@ CWidget::CWidget(QWidget *parent)
     item->setTextAlignment(Qt::AlignHCenter);
     ui->listWidget->addItem(item);
 
+    //QStringList QList<QString>
     QStringList list;
     list <<QString::fromLocal8Bit("锄禾日当午")
          <<QString::fromLocal8Bit("汗滴禾下土")
          <<QString::fromLocal8Bit("谁知盘中餐")
          <<QString::fromLocal8Bit("粒粒皆辛苦");
     ui->listWidget->addItems(list);
+
 
 }
 
