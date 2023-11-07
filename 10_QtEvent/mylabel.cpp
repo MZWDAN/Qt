@@ -54,3 +54,8 @@ void myLabel::mouseReleaseEvent(QMouseEvent *ev)
             .arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
     qDebug() << str;
 }
+
+bool myLabel::event(QEvent *e)
+{
+
+}

@@ -25,6 +25,9 @@ public:
     //鼠标的释放
     virtual void mouseReleaseEvent(QMouseEvent *ev);
 
+    //通过event事件分发器拦截 鼠标按下事件
+    bool event(QEvent *e);
+
 
 signals:
 
