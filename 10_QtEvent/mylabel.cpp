@@ -37,13 +37,13 @@ void myLabel::mouseMoveEvent(QMouseEvent *ev)
 void myLabel::mousePressEvent(QMouseEvent *ev)
 {
     //当鼠标左键按下，提示信息
-    if(ev->button() == Qt::LeftButton) //这个不会区分出来移动的状态，比如左右键都按下了，还是会响应
-    {
+//    if(ev->button() == Qt::LeftButton) //这个不会区分出来移动的状态，比如左右键都按下了，还是会响应
+//    {
         //这种写法有点链式编程的意思  %1 %2只是顺序
         QString str = QString(QString::fromLocal8Bit("鼠标按下了,x=%1  y=%2 global_x=%3 global_y=%4"))
                 .arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
         qDebug() << str;
-    }
+//    }
 }
 
 //鼠标的释放
@@ -57,5 +57,18 @@ void myLabel::mouseReleaseEvent(QMouseEvent *ev)
 
 bool myLabel::event(QEvent *e)
 {
+    //如果是鼠标按下，在event事件分发中做拦截操作
+    if(e->type() == QEvent::MouseButtonPress)
+    {
+        //C++静态类型转换
+        QMouseEvent *ev = static_cast<QMouseEvent *>(e);
+        QString str = QString(QString::fromLocal8Bit("event函数中鼠标按下了,x=%1  y=%2 global_x=%3 global_y=%4"))
+                .arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
+        qDebug() << str;
 
+        return true; //return=trur代表用户自己处理这个事件，不向下分发
+    }
+
+    //其他的事件交给父类处理
+    return QLabel::event(e);
 }
