@@ -72,15 +72,3 @@ bool myLabel::event(QEvent *e)
     //其他的事件交给父类处理
     return QLabel::event(e);
 }
-
-bool myLabel::eventFilter(QObject *watched, QEvent *event)
-{
-    if(event->type() == QEvent::MouseButtonPress)
-    {
-        QMouseEvent *ev = static_cast<QMouseEvent *>(event);
-        QString str = QString(QString::fromLocal8Bit("事件过滤器中鼠标按下了,x=%1  y=%2 global_x=%3 global_y=%4"))
-                .arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
-        qDebug() << str;
-    }
-    return QLabel::eventFilter(watched, event);
-}

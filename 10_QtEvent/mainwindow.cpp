@@ -32,8 +32,6 @@ MainWindow::MainWindow(QWidget *parent)
     //步骤1：安装事件过滤器
     ui->label->installEventFilter(this);
     //步骤2：重写eventfilter事件
-
-
 }
 
 bool MainWindow::eventFilter(QObject *object, QEvent *event)
