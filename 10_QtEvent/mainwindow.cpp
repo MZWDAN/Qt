@@ -3,6 +3,7 @@
 #include "mylabel.h"
 #include <QDebug>
 #include <QTimer> //定时器类
+#include <QMouseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -27,6 +28,28 @@ MainWindow::MainWindow(QWidget *parent)
     //点击暂停按钮，实现停止定时器
     connect(ui->pushButton, &QPushButton::clicked, timer, &QTimer::stop);
 
+    //给label安装事件过滤器
+    //步骤1：安装事件过滤器
+    ui->label->installEventFilter(this);
+    //步骤2：重写eventfilter事件
+
+
+}
+
+bool MainWindow::eventFilter(QObject *object, QEvent *event)
+{
+    if(object == ui->label)
+    {
+        if(event->type() == QEvent::MouseButtonPress)
+        {
+            QMouseEvent *ev = static_cast<QMouseEvent *>(event);
+            QString str = QString(QString::fromLocal8Bit("事件过滤器中鼠标按下了,x=%1  y=%2 global_x=%3 global_y=%4"))
+                    .arg(ev->x()).arg(ev->y()).arg(ev->globalX()).arg(ev->globalY());
+            qDebug() << str;
+        }
+    }
+    //其他默认处理
+    return QWidget::eventFilter(object, event); //相当于把这两个参数都交给它的父类去处理
 }
 
 MainWindow::~MainWindow()
