@@ -18,6 +18,8 @@ public:
     //绘图事件
     void paintEvent(QPaintEvent *);
 
+    int posX = 0;
+
 private:
     Ui::MainWindow *ui;
 };

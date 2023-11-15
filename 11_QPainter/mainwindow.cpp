@@ -7,6 +7,21 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
+
+    //点击移动按钮，移动图片
+    connect(ui->pushButton, &QPushButton::clicked, [=](){
+        //如果要手动调用绘图事件，用update更新
+        posX += 20;
+        update();
+    });
+
+    connect(ui->pushButton_2, &QPushButton::clicked, [=](){
+        //如果要手动调用绘图事件，用update更新
+        posX -= 2;
+        update();
+    });
 }
 
 MainWindow::~MainWindow()
@@ -46,26 +61,38 @@ void MainWindow::paintEvent(QPaintEvent *)
 
 
     ///////////////////////////////高级设置////////////////////////////////
+//    QPainter painter(this);
+////    painter.drawEllipse(QPoint(100, 100), 100, 100);
+////    //设置 抗锯齿能力
+////    //QPainter::Antialiasing: 效率较低
+////    painter.setRenderHint(QPainter::Antialiasing);
+////    painter.drawEllipse(QPoint(400, 100), 100, 100);
+//    painter.drawRect(QRect(20, 20, 50, 50));
+
+//    //移动画家
+//    painter.translate(100, 100);//相当于让画家移了一个位置
+
+//    //保存画家状态
+//    painter.save();
+
+//    painter.drawRect(QRect(20, 20, 50, 50));
+
+//    painter.translate(100, 100);
+
+//    //还原画家保存状态
+//    painter.restore();
+
+//    painter.drawRect(QRect(20, 20, 50, 50));
+
+    /////////////////////////// 利用画家画资源图片 //////////////////////////////
     QPainter painter(this);
-//    painter.drawEllipse(QPoint(100, 100), 100, 100);
-//    //设置 抗锯齿能力
-//    //QPainter::Antialiasing: 效率较低
-//    painter.setRenderHint(QPainter::Antialiasing);
-//    painter.drawEllipse(QPoint(400, 100), 100, 100);
-    painter.drawRect(QRect(20, 20, 50, 50));
 
-    //移动画家
-    painter.translate(100, 100);//相当于让画家移了一个位置
+    //如果超出了屏幕，就从0开始
+    if (posX > this->width())
+    {
+        posX = 0;
+    }
+    painter.drawPixmap(posX, 0, QPixmap(":/images/pic.jpeg"));
 
-    //保存画家状态
-    painter.save();
 
-    painter.drawRect(QRect(20, 20, 50, 50));
-
-    painter.translate(100, 100);
-
-    //还原画家保存状态
-    painter.restore();
-
-    painter.drawRect(QRect(20, 20, 50, 50));
 }
