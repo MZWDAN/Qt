@@ -3,6 +3,9 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QTextCodec>
+#include <QFileInfo>
+#include <QDebug>
+#include <QDateTime>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,10 +41,22 @@ MainWindow::MainWindow(QWidget *parent)
         //对文件对象进行关闭
         file.close();
 
-        //进行写文件
-        file.open(QIODevice::Append);  //用追加的方式进行写
-        file.write("all 1000 RMB");
-        file.close();
+//        //进行写文件
+//        file.open(QIODevice::Append);  //用追加的方式进行写
+//        file.write("all 1000 RMB");
+//        file.close();
+
+        // QFileInfo 文件信息类
+        QFileInfo info(path);
+        qDebug() << "daxiao:" << info.size();
+        qDebug() << "houzhuiming:" << info.suffix();
+        qDebug() << "wenjianmingcheng:" << info.fileName();
+        qDebug() << "wenjianlujing:" << info.filePath();
+        qDebug() << "chuangjianriqi:" << info.created().toString("yyyy/MM/dd hh:mm:ss");
+        qDebug() << "zuihouxiugairiqi:" << info.lastModified();
+
+
+
     });
 }
 
