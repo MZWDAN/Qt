@@ -41,3 +41,24 @@ Widget::~Widget()
     delete ui;
 }
 
+
+void Widget::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+
+    //利用QImage，对像素进行修改
+    QImage img;
+    img.load(":/images/pic.jpeg");
+
+    //修改像素点
+    for(int i = 50; i < 100; i++)
+    {
+        for(int j = 50; j < 100; j++)
+        {
+            QRgb value = qRgb(255, 255, 0);
+            img.setPixel(i, j, value);
+        }
+    }
+
+    painter.drawImage(0, 0, img);
+}
