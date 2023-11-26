@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPainter>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,7 +20,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->pushButton_2, &QPushButton::clicked, [=](){
         //如果要手动调用绘图事件，用update更新
-        posX -= 2;
+        posX -= 20;
+        update();
+    });
+
+    QTimer *timer = new QTimer(this);
+    timer->start(1000);
+
+    connect(timer, &QTimer::timeout, [=](){
+        posX += 10;
         update();
     });
 }
@@ -88,7 +97,7 @@ void MainWindow::paintEvent(QPaintEvent *)
     QPainter painter(this);
 
     //如果超出了屏幕，就从0开始
-    if (posX > this->width())
+    if (posX > this->width() || posX < -(this->width()))
     {
         posX = 0;
     }

@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         //将读到的数据放入textEdit中
         ui->textEdit->setText(array);
+        ui->textEdit->setText(codec->toUnicode(array));
 
         //对文件对象进行关闭
         file.close();
