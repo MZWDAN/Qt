@@ -1,11 +1,13 @@
 ﻿#include "mainscene.h"
 #include "ui_mainscene.h"
 #include "mypushbutton.h"
+#include "chooselevelscene.h"
 #include <QPushButton>
 #include <QAction>
 #include <QPainter>
 #include <QPixmap>
 #include <QDebug>
+#include <QTimer>
 
 MainScene::MainScene(QWidget *parent)
     : QMainWindow(parent)
@@ -34,6 +36,9 @@ MainScene::MainScene(QWidget *parent)
     startBtn->setParent(this);
     startBtn->move((this->width()/2 - startBtn->width()/2), this->height() * 0.7);
 
+    //实例化选择关卡场景
+    chooseScene = new ChooseLevelScene;
+
     connect(startBtn, &QPushButton::clicked, [=](){
 //       qDebug() << "click start btn";
        //先对按钮做位置初始化，不然连点会往下移
@@ -41,6 +46,12 @@ MainScene::MainScene(QWidget *parent)
        //做弹起特效
        startBtn->zoom1();
        startBtn->zoom2();
+
+       //延时进入到选择关卡场景
+       QTimer::singleShot(500, this, [=](){
+           this->hide();
+           chooseScene->show();
+       });
 
     });
 }
