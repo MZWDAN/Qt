@@ -16,6 +16,10 @@ public:
     QString normalImgPath;
     QString pressImgPath;
 
+    //弹跳特效
+    void zoom1();  //向下跳
+    void zoom2();  //向上跳
+
 signals:
 
 };

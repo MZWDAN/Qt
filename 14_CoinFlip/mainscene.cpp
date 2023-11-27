@@ -5,6 +5,7 @@
 #include <QAction>
 #include <QPainter>
 #include <QPixmap>
+#include <QDebug>
 
 MainScene::MainScene(QWidget *parent)
     : QMainWindow(parent)
@@ -21,7 +22,7 @@ MainScene::MainScene(QWidget *parent)
     setWindowIcon(QIcon(":/res/Coin0001.png"));
 
     //设置标题
-    setWindowTitle(QString::fromLocal8Bit("小蛋蛋带你翻金币"));
+    setWindowTitle(QString::fromLocal8Bit("小呆呆翻金币"));
 
     //退出按钮实现
     connect(ui->actionquit, &QAction::triggered, [=](){
@@ -32,6 +33,16 @@ MainScene::MainScene(QWidget *parent)
     MyPushButton *startBtn = new MyPushButton(":/res/MenuSceneStartButton.png");
     startBtn->setParent(this);
     startBtn->move((this->width()/2 - startBtn->width()/2), this->height() * 0.7);
+
+    connect(startBtn, &QPushButton::clicked, [=](){
+//       qDebug() << "click start btn";
+       //先对按钮做位置初始化，不然连点会往下移
+       startBtn->move((this->width()/2 - startBtn->width()/2), this->height() * 0.7);
+       //做弹起特效
+       startBtn->zoom1();
+       startBtn->zoom2();
+
+    });
 }
 
 MainScene::~MainScene()
