@@ -1,5 +1,8 @@
 ﻿#include "chooselevelscene.h"
 #include <QMenuBar>
+#include <QPainter>
+#include <QDebug>
+#include "mypushbutton.h"
 
 ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 {
@@ -26,4 +29,28 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
     connect(quit, &QAction::triggered, [=](){
         this->close();
     });
+
+    //返回按钮
+    MyPushButton *backBtn = new MyPushButton(":/res/BackButton.png", ":/res/BackButtonSelected.png");
+    backBtn->setParent(this);
+    backBtn->move(this->width() - backBtn->width(), this->height() - backBtn->height());
+
+    //点击返回按钮
+    connect(backBtn, &QPushButton::clicked, [=](){
+        qDebug() << "click backBtn";
+    });
+}
+
+
+void ChooseLevelScene::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    QPixmap pixmap;
+    pixmap.load(":/res/OtherSceneBg.png");
+    painter.drawPixmap(0, 0, this->width(), this->height(), pixmap);
+
+    //画背景上的图标
+    pixmap.load(":/res/Title.png");
+//    pixmap = pixmap.scaled(QSize(pixmap.width() * 0.5, pixmap.height() * 0.5));
+    painter.drawPixmap(this->width()/2 - pixmap.width()/2, 30, pixmap);
 }
