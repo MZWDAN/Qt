@@ -39,6 +39,12 @@ MainScene::MainScene(QWidget *parent)
     //实例化选择关卡场景
     chooseScene = new ChooseLevelScene;
 
+    //监听选择关卡的返回按钮的信号
+    connect(chooseScene, &ChooseLevelScene::chooseSenceBack, this, [=](){
+        chooseScene->hide();  //将选择关卡场景 隐藏掉
+        this->show();  //重新显示主场景
+    });
+
     connect(startBtn, &QPushButton::clicked, [=](){
 //       qDebug() << "click start btn";
        //先对按钮做位置初始化，不然连点会往下移

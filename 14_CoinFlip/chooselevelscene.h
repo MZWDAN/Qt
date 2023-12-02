@@ -13,6 +13,8 @@ public:
     void paintEvent(QPaintEvent *event);
 
 signals:
+    //写一个自定义的信号，告诉主场景，点击了返回  自定义的信号，只要声明，不需要实现
+    void chooseSenceBack();
 
 };
 

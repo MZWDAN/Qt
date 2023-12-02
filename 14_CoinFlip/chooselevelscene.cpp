@@ -2,7 +2,9 @@
 #include <QMenuBar>
 #include <QPainter>
 #include <QDebug>
+#include <QTimer>
 #include "mypushbutton.h"
+#include "mainscene.h"
 
 ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 {
@@ -37,7 +39,13 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 
     //点击返回按钮
     connect(backBtn, &QPushButton::clicked, [=](){
-        qDebug() << "click backBtn";
+//        qDebug() << "click backBtn";
+        //告诉主场景，我返回了，主场景监听ChooseLevelScene的返回按钮
+        //延时返回
+        QTimer::singleShot(500, this, [=](){
+            emit this->chooseSenceBack();
+        });
+
     });
 }
 
