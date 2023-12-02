@@ -64,3 +64,61 @@ void MyPushButton::zoom2()
     //执行动画
     animation->start();
 }
+
+void MyPushButton::mousePressEvent(QMouseEvent *e)
+{
+    if(this->pressImgPath != "") // 传入的按下图片不为空，说明需要有按下状态，需要切换图片
+    {
+        QPixmap pixmap;
+        bool ret = pixmap.load(this->pressImgPath);
+        if(!ret)
+        {
+            qDebug() << "img load error";
+            return;
+        }
+
+        //设置按钮固定大小
+        this->setFixedSize(pixmap.width(), pixmap.height());
+
+        //设置不规则图片的样式
+        this->setStyleSheet("QPushButton{border:0px;}");
+
+        //设置图标
+        this->setIcon(pixmap);
+
+        //设置图标大小
+        this->setIconSize(QSize(pixmap.width(), pixmap.height()));
+    }
+
+    //让父类执行其他内容
+    return QPushButton::mousePressEvent(e);
+}
+
+void MyPushButton::mouseReleaseEvent(QMouseEvent *e)
+{
+    if(this->pressImgPath != "") // 传入的按下图片不为空，说明需要有按下状态，需要切换图片
+    {
+        QPixmap pixmap;
+        bool ret = pixmap.load(this->normalImgPath);
+        if(!ret)
+        {
+            qDebug() << "img load error";
+            return;
+        }
+
+        //设置按钮固定大小
+        this->setFixedSize(pixmap.width(), pixmap.height());
+
+        //设置不规则图片的样式
+        this->setStyleSheet("QPushButton{border:0px;}");
+
+        //设置图标
+        this->setIcon(pixmap);
+
+        //设置图标大小
+        this->setIconSize(QSize(pixmap.width(), pixmap.height()));
+    }
+
+    //让父类执行其他内容
+    return QPushButton::mouseReleaseEvent(e);
+}
