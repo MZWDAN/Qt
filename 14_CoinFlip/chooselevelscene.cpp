@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QDebug>
 #include <QTimer>
+#include <QLabel>
 #include "mypushbutton.h"
 #include "mainscene.h"
 
@@ -47,6 +48,22 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
         });
 
     });
+
+    //创建选择关卡的场景
+    for(int i=0;i<20;i++)
+    {
+        MyPushButton *menuBtn = new MyPushButton(":/res/LevelIcon.png");
+        menuBtn->setParent(this);
+        menuBtn->move(25+i%4*70, 130+i/4*70);
+
+        QLabel *label = new QLabel;
+        label->setParent(this);
+        label->setFixedSize(menuBtn->width(), menuBtn->height());
+        label->setText(QString::number(i+1));
+        label->setAlignment(Qt::AlignCenter);
+        label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        label->move(25+i%4*70, 130+i/4*70);
+    }
 }
 
 
