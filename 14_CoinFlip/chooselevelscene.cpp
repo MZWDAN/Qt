@@ -58,7 +58,7 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
 
         //监听每个按钮的点击事件
         connect(menuBtn, &MyPushButton::clicked, [=](){
-            QString str = QString::fromLocal8Bit("您选择的是第%l关").arg(i+1);
+            QString str = QString::fromLocal8Bit("您选择的是第%1关").arg(i+1);
             qDebug() << str;
         });
 
@@ -66,9 +66,12 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
         label->setParent(this);
         label->setFixedSize(menuBtn->width(), menuBtn->height());
         label->setText(QString::number(i+1));
-        label->setAlignment(Qt::AlignCenter);
+//        label->setAlignment(Qt::AlignCenter);
         label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         label->move(25+i%4*70, 130+i/4*70);
+
+        //设置让鼠标进行穿透 51号属性
+        label->setAttribute(Qt::WA_TransparentForMouseEvents);
     }
 }
 
