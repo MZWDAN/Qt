@@ -56,6 +56,12 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
         menuBtn->setParent(this);
         menuBtn->move(25+i%4*70, 130+i/4*70);
 
+        //监听每个按钮的点击事件
+        connect(menuBtn, &MyPushButton::clicked, [=](){
+            QString str = QString::fromLocal8Bit("您选择的是第%l关").arg(i+1);
+            qDebug() << str;
+        });
+
         QLabel *label = new QLabel;
         label->setParent(this);
         label->setFixedSize(menuBtn->width(), menuBtn->height());
