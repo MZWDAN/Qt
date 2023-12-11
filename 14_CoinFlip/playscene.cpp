@@ -1,7 +1,11 @@
 ﻿#include "playscene.h"
+#include "mypushbutton.h"
 #include <QMenuBar>
 #include <QAction>
 #include <QPainter>
+#include <QTimer>
+#include <QPushButton>
+#include <QDebug>
 
 //PlayScene::PlayScene(QWidget *parent) : QMainWindow(parent)
 //{
@@ -35,10 +39,25 @@ PlayScene::PlayScene(int levelNum)
     connect(quit, &QAction::triggered, [=](){
         this->close();
     });
+
+    //返回按钮
+    MyPushButton *backBtn = new MyPushButton(":/res/BackButton.png", ":/res/BackButtonSelected.png");
+    backBtn->setParent(this);
+    backBtn->move(this->width() - backBtn->width(), this->height() - backBtn->height());
+
+    connect(backBtn, &QPushButton::clicked, [=](){
+        qDebug() << QString::fromLocal8Bit("翻金币场景中，点击了返回按钮");
+        //延时返回
+        QTimer::singleShot(500, this, [=](){
+            emit this->chooseSenceBack();
+        });
+
+    });
 }
 
 void PlayScene::paintEvent(QPaintEvent *event)
 {
+    //创建背景
     QPainter painter(this);
     QPixmap pixmap;
     pixmap.load(":/res/PlayLevelSceneBg.png");
@@ -46,6 +65,6 @@ void PlayScene::paintEvent(QPaintEvent *event)
 
     //画背景上的图标
     pixmap.load(":/res/Title.png");
-//    pixmap = pixmap.scaled(QSize(pixmap.width() * 0.5, pixmap.height() * 0.5));
-    painter.drawPixmap(this->width()/2 - pixmap.width()/2, 30, pixmap);
+    pixmap = pixmap.scaled(QSize(pixmap.width() * 0.5, pixmap.height() * 0.5));
+    painter.drawPixmap(10, 30, pixmap);
 }

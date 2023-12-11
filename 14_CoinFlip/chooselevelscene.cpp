@@ -65,6 +65,13 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
             this->hide();//将选关场景隐藏掉
             play = new PlayScene(i+1);//创建游戏场景
             play->show();//显示游戏场景
+
+            connect(play, &PlayScene::chooseSenceBack, [=](){
+                this->show();
+                delete play;
+                play = NULL;
+
+            });
         });
 
         QLabel *label = new QLabel;

@@ -12,9 +12,11 @@ public:
 
     int levelIndex;//内部成员属性，记录所选的关卡
 
+    //重写绘图事件
     void paintEvent(QPaintEvent *event);
 
 signals:
+    void chooseSenceBack();
 
 };
 
