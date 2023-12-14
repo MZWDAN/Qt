@@ -60,18 +60,20 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
         connect(menuBtn, &MyPushButton::clicked, [=](){
             QString str = QString::fromLocal8Bit("您选择的是第%1关").arg(i+1);
             qDebug() << str;
-
-            //进入游戏场景
-            this->hide();//将选关场景隐藏掉
-            play = new PlayScene(i+1);//创建游戏场景
-            play->show();//显示游戏场景
+            if(play == NULL)
+            {
+                //进入游戏场景
+                this->hide();//将选关场景隐藏掉
+                play = new PlayScene(i+1);//创建游戏场景
+                play->show();//显示游戏场景
+             }
             //监听游戏场景返回按钮的事件
             connect(play, &PlayScene::chooseSenceBack, [=](){
                 this->show();
                 delete play;
                 play = NULL;
-
             });
+
         });
 
         QLabel *label = new QLabel;
