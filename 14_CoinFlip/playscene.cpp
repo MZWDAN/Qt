@@ -1,5 +1,6 @@
 ﻿#include "playscene.h"
 #include "mypushbutton.h"
+#include "mycoin.h"
 #include <QMenuBar>
 #include <QAction>
 #include <QPainter>
@@ -70,6 +71,27 @@ PlayScene::PlayScene(int levelNum)
     //另一种设置大小并且移动的方法
     label->setGeometry(QRect(30, this->height() - 50, 120, 50));
     label->setFont(font);
+
+    //显示金币背景图案
+    for(int i = 0;i<4;i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            //绘制背景图片
+            QPixmap pix = QPixmap(":/res/BoardNode.png");
+            QLabel *label = new QLabel;
+            label->setGeometry(0, 0, pix.width(), pix.height());
+            label->setPixmap(pix);
+            label->setParent(this);
+            label->move(57 + i*50, 200+j*50);
+
+            //创建金币
+            MyCoin *coin = new MyCoin(":/res/Coin0001.png");
+            coin->setParent(this);
+            coin->move(59 + i*50, 204+j*50);
+//            coin->
+        }
+    }
 }
 
 void PlayScene::paintEvent(QPaintEvent *event)

@@ -73,7 +73,6 @@ ChooseLevelScene::ChooseLevelScene(QWidget *parent) : QMainWindow(parent)
                 delete play;
                 play = NULL;
             });
-
         });
 
         QLabel *label = new QLabel;
