@@ -114,6 +114,11 @@ PlayScene::PlayScene(int levelNum)
             coin->posX = i;
             coin->posY = j;
             coin->flag = this->gameArray[i][j];  //1是正面，0是反面
+
+            //点击金币进行翻转
+            connect(coin, &MyCoin::clicked, [=](){
+                coin->changeFlag();
+            });
         }
     }
 }
