@@ -45,6 +45,7 @@ MyCoin::MyCoin(QString btnImg)
         if(this->min > this->max)
         {
             this->min = 1;
+            isAnimation = false;
             timer1->stop();
         }
     });
@@ -64,6 +65,7 @@ MyCoin::MyCoin(QString btnImg)
         if(this->max < this->min)
         {
             this->max = 8;
+            isAnimation = false;
             timer2->stop();
         }
     });
@@ -75,11 +77,25 @@ void MyCoin::changeFlag()
     if(this->flag)//如果是正面，执行下列代码
     {
         timer1->start(30);
+        isAnimation = true;//开始做动画
         this->flag = false;
     }
     else//反面执行下列代码
     {
         timer2->start(30);
+        isAnimation = true;
         this->flag = true;
+    }
+}
+
+void MyCoin::mousePressEvent(QMouseEvent *e)
+{
+    if(this->isAnimation)
+    {
+        return;
+    }
+    else
+    {
+        QPushButton::mousePressEvent(e);
     }
 }

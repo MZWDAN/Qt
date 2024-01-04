@@ -115,9 +115,43 @@ PlayScene::PlayScene(int levelNum)
             coin->posY = j;
             coin->flag = this->gameArray[i][j];  //1是正面，0是反面
 
+            //将金币放入到金币的二维数组里，以便于后期的维护
+            coinBtn[i][j] = coin;
+
             //点击金币进行翻转
             connect(coin, &MyCoin::clicked, [=](){
                 coin->changeFlag();
+                this->gameArray[i][j] == this->gameArray[i][j] == 0 ? 1: 0;// 三目运算符
+
+                QTimer::singleShot(300, this, [=](){
+                    //翻转周围的硬币
+                    if(coin->posX+1 <= 3)//周围的右侧金币翻转的条件  延时翻转
+                    {
+                        coinBtn[coin->posX+1][coin->posY]->changeFlag();
+                        this->gameArray[coin->posX+1][coin->posY] == this->gameArray[coin->posX+1][coin->posY] == 0 ? 1: 0;// 三目运算符
+                    }
+
+                    //周围的左侧硬币翻转的条件
+                    if(coin->posX-1 >= 0)
+                    {
+                        coinBtn[coin->posX-1][coin->posY]->changeFlag();
+                        this->gameArray[coin->posX-1][coin->posY] == this->gameArray[coin->posX-1][coin->posY] == 0 ? 1: 0;// 三目运算符
+                    }
+
+                    //周围的上方硬币翻转的条件
+                    if(coin->posY-1 >= 0)
+                    {
+                        coinBtn[coin->posX][coin->posY-1]->changeFlag();
+                        this->gameArray[coin->posX][coin->posY-1] == this->gameArray[coin->posX][coin->posY-1] == 0 ? 1: 0;// 三目运算符
+                    }
+
+                    //周围的下方硬币翻转的条件
+                    if(coin->posY+1 <= 3)
+                    {
+                        coinBtn[coin->posX][coin->posY+1]->changeFlag();
+                        this->gameArray[coin->posX][coin->posY+1] == this->gameArray[coin->posX][coin->posY+1] == 0 ? 1: 0;// 三目运算符
+                    }
+                });
             });
         }
     }

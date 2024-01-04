@@ -24,6 +24,12 @@ public:
     int min = 1;//最小图片
     int max = 8;//最大图片
 
+    //执行动画标志
+    bool isAnimation = false;
+
+    //重写按下和释放
+    void mousePressEvent(QMouseEvent *e);
+
 signals:
 
 };
